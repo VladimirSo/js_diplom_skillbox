@@ -25,7 +25,7 @@ const initialState = {
         isFetching: true,
         didInvalidate: false,
         fotosArr: [],
-        authToken: (localStorage.fotoViewerAuthToken != undefined) ? localStorage.fotoViewerAuthToken : '',
+        authToken: (localStorage.fotoViewerAuthToken !== undefined) ? localStorage.fotoViewerAuthToken : '',
     },
     routing: routerReducer,
 }
@@ -100,18 +100,18 @@ const initialState = {
 //     document.querySelector('.fotos-viewer-app')
 // );
 
+/// если в localStorage нет токена с unsplash или если запрос на авторизацию еще не послан, то нужна авторизаця
+const auth = ((localStorage.fotoViewerAuthToken === undefined) && (sessionStorage.fotoViewerSentRequest != 'true')) ? true : false;
 ///
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer, initialState);
-///
-const auth = (localStorage.fotoViewerAuthToken != undefined) ? true : false;
 
 let App = () => {
     return (
         <BrowserRouter>
             <div className="App">
                 <Route path="/" exact component={FotosApp}>
-                    {!auth ? (
+                    {auth ? (
                         <Redirect to="/auth" />
                     ) : (
                         <FotosApp />

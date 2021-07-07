@@ -14,7 +14,7 @@ let App = (props) => {
     const fotosArr = rootReducer.fotos.fotosArr;
 
     document.addEventListener('DOMContentLoaded', () => {
-        debugger;
+        // debugger;
         if (sessionStorage.fotoViewerSentRequest === 'true') {
             // console.log(location.search);
             const authorizationCode = location.search.split('code=')[1];

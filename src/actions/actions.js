@@ -177,7 +177,9 @@ export const requestAuthToken = (code) => {
             .then(data => {
                 console.log('DATA', data);
                 const payload = data.access_token;
-                // console.log('TOKEN: ', payload);
+
+                console.log('TOKEN: ', payload);
+                localStorage.setItem('fotoViewerAuthToken', payload);
                 // requestAuthTokenSuccess(payload);
                 dispatch(requestAuthTokenSuccess(payload));
             })

@@ -2,7 +2,7 @@ import React from 'react';
 import { requestAuth } from '../actions/actions.js';
 
 let AuthenApp = (props) => {
-    debugger;
+    // debugger;
     console.log('REQUEST SENT TO');
 
     if (localStorage.fotoViewerAuthToken === undefined) {

@@ -16,7 +16,7 @@ const ViewerPhoto = (props) => {
             <Link to='/'>Back</Link>
 
             <article>
-                <img src={viewedPhoto.url} alt={viewedPhoto.altDescr} width='75%' />
+                <img src={viewedPhoto.url} alt={viewedPhoto.altDescr} width='75%' loading="lazy" />
 
                 <p> Photo by&ensp;
                     <a href={viewedPhoto.userLinks}>{viewedPhoto.userName}</a>&ensp;

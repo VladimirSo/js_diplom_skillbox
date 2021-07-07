@@ -12,26 +12,17 @@ const fotos = (
             didInvalidate: false,
             fotosArr: [],
         },
-        authToken: '',
-        // authToken: (localStorage.fotoViewerAuthToken) ? localStorage.fotoViewerAuthToken : '',
-        viewedPhoto: {
-            id: '',
-            altDescr: '',
-            userLinks: '',
-            updatedAt: '',
-            likes: '',
-            likedByUser: '',
-            url: '',
-        },
         routing: routerReducer,
     },
+
     action) => {
-    debugger;
+    // debugger;
     // console.log(action);
     // console.log(state);
 
     switch (action.type) {
         case 'LOAD_FOTOS_REQUEST':
+            // debugger;
             console.log('LOAD_FOTOS_REQUEST');
             return Object.assign({}, state, {
                 isFetching: true,
@@ -76,7 +67,7 @@ const fotos = (
             });
             // console.log(selectedPhoto);
             return Object.assign({}, state, {
-                viewedPhoto: selectedPhoto
+                viewedPhoto: selectedPhoto,
             });
 
         case 'TOKEN_REQUEST_MAKE':
@@ -89,8 +80,6 @@ const fotos = (
         case 'TOKEN_REQUEST_SUCCESS':
             // debugger;
             console.log('TOKEN_REQUEST_SUCCESS: ' + action.payload);
-            localStorage.setItem('fotoViewerAuthToken', action.payload);
-
             return Object.assign({}, state, {
                 authToken: action.payload,
             });
