@@ -1,0 +1,40 @@
+{
+    "name": "photo-viewer",
+    "version": "1.0.0",
+    "description": "Thesis work. Skillbox a \"JS from scratch\" course",
+    "main": "index.js",
+    "devDependencies": {
+        "@babel/core": "^7.14.5",
+        "@babel/preset-env": "^7.14.5",
+        "@babel/preset-react": "^7.14.5",
+        "babel-loader": "^8.2.2",
+        "copy-webpack-plugin": "^9.0.0",
+        "css-loader": "^5.2.6",
+        "html-webpack-plugin": "^5.3.1",
+        "mini-css-extract-plugin": "^1.6.0",
+        "path": "^0.12.7",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-redux": "^7.2.4",
+        "react-router": "^5.2.0",
+        "react-router-dom": "^5.2.0",
+        "react-router-redux": "^4.0.8",
+        "redux": "^4.1.0",
+        "redux-thunk": "^2.3.0",
+        "sass": "^1.35.0",
+        "sass-loader": "^12.1.0",
+        "unsplash-js": "^7.0.11",
+        "webpack": "^5.38.1",
+        "webpack-cli": "^4.7.2",
+        "webpack-dev-server": "^3.11.2"
+    },
+    "scripts": {
+        "dev": "webpack serve --mode development",
+        "build": "./node_modules/.bin/webpack --mode production",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "browserslist": "defaults",
+    "author": "Vladimir Solomonov",
+    "license": "ISC",
+    "dependencies": {}
+}
