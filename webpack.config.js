@@ -13,19 +13,20 @@ const conf = {
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].js',
-        publicPath: 'auto',
+        // publicPath: 'auto',
+        publicPath: '/',
 
         assetModuleFilename: '[name].[ext]',
     },
 
     devServer: {
-        publicPath: 'http://localhost:8080/dist/',
-        // publicPath: '/dist/',
+        // publicPath: 'http://localhost:8080/dist/',
         open: true,
         overlay: true,
         compress: true,
         inline: true,
         hot: true,
+        historyApiFallback: true,
 
         // contentBase: [
         //     path.resolve(__dirname, './src'),
@@ -33,6 +34,15 @@ const conf = {
         // ],
 
         // watchContentBase: true,
+        //
+        // proxy: {
+        //     '/view_photo_index': {
+        //         target: 'https://unsplash.com/photos',
+        //         changeOrigin: true,
+        //         pathRewrite: { '^/view_photo_index': '/' },
+        //     }
+
+        // },
     },
     //
     watchOptions: {
@@ -40,6 +50,7 @@ const conf = {
         ignored: [path.posix.resolve(__dirname, './node_modules')],
         poll: 1000,
     },
+    // без минификации js
     // optimization: {
     //     minimize: false
     // },
@@ -56,14 +67,28 @@ const conf = {
                 }
             },
             {
-                test: /\.(jpg|png|svg|jpeg|gif)$/,
-                type: 'asset/resource'
+                test: /\.(jpg|png|jpeg|gif)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[name][ext][query]'
+                }
             },
             {
                 // test: /\.css$/i,
                 test: /\.(scss|css)$/i,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-            }
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'fonts/[name].[ext]'
+                        }
+                    },
+                ]
+            },
         ]
     },
     plugins: [
@@ -72,17 +97,25 @@ const conf = {
             filename: 'index.html',
             inject: 'body'
         }),
-        // new CopyPlugin({
-        //     patterns: [
-        //         {
-        //             from: path.resolve(__dirname, './src/images/**/*'),
-        //             to: path.resolve(__dirname, './dist/images')
-        //         },
-        //     ],
-        //     options: {
-        //         concurrency: 100,
-        //     },
-        // }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, './src/images/**/*'),
+                    to: path.resolve(__dirname, './dist')
+                },
+                {
+                    from: path.resolve(__dirname, './src/favicon/*'),
+                    to: path.resolve(__dirname, './dist')
+                },
+                // {
+                //     from: path.resolve(__dirname, './src/fonts/**/*'),
+                //     to: path.resolve(__dirname, './dist')
+                // },
+            ],
+            options: {
+                concurrency: 100,
+            },
+        }),
         new MiniCssExtractPlugin({
             linkType: 'text/css',
             insert: 'head',

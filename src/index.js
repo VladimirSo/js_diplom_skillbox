@@ -1,30 +1,33 @@
-// import React, { Component } from 'react';
+///
 import React from 'react';
 import ReactDOM from 'react-dom';
-///
+
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-////
+
 import { Provider } from 'react-redux';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 import { BrowserRouter, Redirect } from 'react-router-dom';
 import { routerReducer } from 'react-router-redux';
 
-import FotosApp from './containers/fotos-app.js';
+import FotosApp from './containers/list-fotos-app.js';
 import ViewerPhotoApp from './containers/viewer-photo-app.js';
 import AuthenApp from './containers/auth-app.js';
+import NoMatchApp from './containers/no-match-app.js';
 
 import rootReducer from './reducers/index.js';
 
-// import '../css/main.css';
-// import '../sass/main.scss';
+import './css/main.css';
+import './scss/fonts.scss';
+import './scss/main.scss';
 
-debugger;
+// debugger;
 const initialState = {
     fotos: {
         isFetching: true,
         didInvalidate: false,
         fotosArr: [],
+        viewedPhoto: { id: "no_photo" },
         authToken: (localStorage.fotoViewerAuthToken !== undefined) ? localStorage.fotoViewerAuthToken : '',
     },
     routing: routerReducer,
@@ -110,15 +113,18 @@ let App = () => {
     return (
         <BrowserRouter>
             <div className="App">
-                <Route path="/" exact component={FotosApp}>
-                    {auth ? (
-                        <Redirect to="/auth" />
-                    ) : (
-                        <FotosApp />
-                    )}
-                </Route>
-                <Route path="/view_photo_index" exact component={ViewerPhotoApp} />
-                <Route path="/auth" exact component={AuthenApp} />
+                <Switch>
+                    <Route path="/" exact component={FotosApp}>
+                        {auth ? (
+                            <Redirect to="/auth" />
+                        ) : (
+                            <FotosApp />
+                        )}
+                    </Route>
+                    <Route path="/view_photo_index" exact component={ViewerPhotoApp} />
+                    <Route path="/auth" exact component={AuthenApp} />
+                    <Route path="*" component={NoMatchApp} />
+                </Switch>
             </div>
         </BrowserRouter >
     );

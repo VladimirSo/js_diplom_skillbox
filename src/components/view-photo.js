@@ -1,46 +1,68 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
+import '../scss/photo-view.scss';
 
 const ViewerPhoto = (props) => {
-    // debugger;
-    const { rootReducer, toggleLike } = props;
-    const viewedPhoto = rootReducer.fotos.viewedPhoto;
+    debugger;
+    const { rootReducer, toggleLike, getLikesInfo } = props;
     const authToken = rootReducer.fotos.authToken;
+    const viewedPhoto = rootReducer.fotos.viewedPhoto;
 
-    let signLikes = viewedPhoto.likedByUser ? 'liked' : '';
+    if (viewedPhoto.id === "no_photo") {
+        return (
+            <Redirect to="/" />
+        )
+    } else {
+        let signLikes = viewedPhoto.likedByUser ? 'liked' : '';
 
-    return (
-        <div>
-            <h2>Single photo view page</h2>
+        return (
+            <div className="photo-viewer" onLoad={getLikesInfo(viewedPhoto.id, authToken)}>
+                <Link className="photo-viewer__back-btn back-btn" to='/'><span className="back-btn__arrow">&#9664;</span> Вернуться</Link>
 
-            <Link to='/'>Back</Link>
+                <article className="photo-data">
+                    {/* <img src={viewedPhoto.url} alt={viewedPhoto.altDescr} width='75%' loading="lazy" /> */}
+                    <LazyLoadImage
+                        alt={viewedPhoto.altDescr}
+                        src={viewedPhoto.url}
+                        width={'100%'}
+                        placeholderSrc={'./images/placeholder.svg'}
+                    />
 
-            <article>
-                <img src={viewedPhoto.url} alt={viewedPhoto.altDescr} width='75%' loading="lazy" />
+                    <h2 className="photo-data__title">{viewedPhoto.altDescr}</h2>
 
-                <p> Photo by&ensp;
-                    <a href={viewedPhoto.userLinks}>{viewedPhoto.userName}</a>&ensp;
-                    on&ensp;<a href="https://unsplash.com/?utm_source=your_app_name&utm_medium=referral">Unsplash</a>
-                </p>
+                    <p className="photo-data__links"> Photo by&ensp;
+                        <a href={viewedPhoto.userLinks + '?utm_source=Photo_Lenta&utm_medium=referral'}>{viewedPhoto.userName}</a>&ensp;
+                        on&ensp;<a href="https://unsplash.com/?utm_source=Photo_Lenta&utm_medium=referral">Unsplash</a>
+                    </p>
 
-                <time dateTime={viewedPhoto.updatedAt}>
-                    <span>
-                        {(new Date(viewedPhoto.updatedAt)).toLocaleDateString()}
-                    </span>
-                </time>
+                    <div className="photo-data__details">
+                        <time dateTime={viewedPhoto.updatedAt}>
+                            <span className="photo-data__time">
+                                {(new Date(viewedPhoto.updatedAt)).toLocaleDateString()}
+                            </span>
+                        </time>
+                        {/* <time dateTime={viewedPhoto.createdAt}>
+                            <span className="photo-data__time">
+                                {(new Date(viewedPhoto.createdAt)).toLocaleDateString()}
+                            </span>
+                        </time> */}
 
-                <span>
-                    <button onClick={() => {
-                        // debugger;
-                        toggleLike(viewedPhoto.id, viewedPhoto.likedByUser, authToken);
-                    }}>
-                        <span className={signLikes}>&#9829;</span>
-                    </button>
-                    : {viewedPhoto.likes}
-                </span>
-            </article>
-        </div>
-    )
+                        <span className="photo-data__likes">
+                            <button onClick={() => {
+                                toggleLike(viewedPhoto.id, viewedPhoto.likedByUser, authToken);
+                            }}>
+                                <span className={"like-sign" + " " + signLikes}>&#9829;</span>
+                            </button>
+                            : <span>{viewedPhoto.likes}</span>
+                        </span>
+                    </div>
+                </article>
+            </div>
+        )
+    }
 }
 
 export default ViewerPhoto;

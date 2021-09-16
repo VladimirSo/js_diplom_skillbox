@@ -10,11 +10,13 @@
         "babel-loader": "^8.2.2",
         "copy-webpack-plugin": "^9.0.0",
         "css-loader": "^5.2.6",
+        "file-loader": "^6.2.0",
         "html-webpack-plugin": "^5.3.1",
         "mini-css-extract-plugin": "^1.6.0",
         "path": "^0.12.7",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
+        "react-lazy-load-image-component": "^1.5.1",
         "react-redux": "^7.2.4",
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",
@@ -35,6 +37,5 @@
     },
     "browserslist": "defaults",
     "author": "Vladimir Solomonov",
-    "license": "ISC",
-    "dependencies": {}
+    "license": "ISC"
 }

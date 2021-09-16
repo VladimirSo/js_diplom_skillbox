@@ -1,0 +1,72 @@
+body {
+    background-color: #DDD;
+    font-family: "Roboto", "Arial", sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+main {
+    margin: 0;
+
+    @media (min-width: 768px) {
+        margin: 25px;
+    }
+
+    @media (min-width: 1200px) {
+        margin: 50px;
+    }
+}
+
+.top-block {
+    background-color: #FFF;
+    border-bottom: 1px solid #DDD;
+    border-radius: 5px 5px 0 0;
+    padding: 15px;
+
+    @media (min-width: 768px) {
+        padding: 25px;
+    }
+
+    @media (min-width: 1200px) {
+        background-image: url(../images/lenta-bgr.png);
+        background-size: auto 150px;
+        background-repeat: no-repeat;
+        background-position-y: center;
+        background-position-x: 75px;
+        padding: 50px;
+    }
+}
+
+.lenta-title {
+    font-family: "Caveat", "Arial", sans-serif;
+    font-size: 45px;
+    line-height: 40px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-align: center;
+ 
+    @media (min-width: 768px) {
+        font-size: 55px;
+    }
+    @media (min-width: 1200px) {
+        font-size: 60px;
+    }
+
+    &__accent {
+        font-size: 1.5em;
+        font-style: italic;
+        font-weight: 500;
+        color: #cacaca;
+    }
+    
+    &__tagline {
+        font-size: 30px;
+        line-height: 30px;
+        letter-spacing: -0.03em;
+        
+        @media (min-width: 768px) {
+            font-size: 35px;
+        }
+    }
+    
+}
