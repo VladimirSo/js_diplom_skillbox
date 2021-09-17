@@ -38,18 +38,19 @@ main {
 }
 
 .lenta-title {
-    font-family: "Caveat", "Arial", sans-serif;
-    font-size: 45px;
+    // font-family: "Caveat", "Arial", sans-serif;
+    font-family: "Marutya", "Arial", sans-serif;
+    font-size: 40px;
     line-height: 40px;
     font-weight: 500;
     letter-spacing: 0.02em;
     text-align: center;
  
     @media (min-width: 768px) {
-        font-size: 55px;
+        font-size: 45px;
     }
     @media (min-width: 1200px) {
-        font-size: 60px;
+        font-size: 50px;
     }
 
     &__accent {
@@ -60,12 +61,12 @@ main {
     }
     
     &__tagline {
-        font-size: 30px;
+        font-size: 25px;
         line-height: 30px;
         letter-spacing: -0.03em;
         
         @media (min-width: 768px) {
-            font-size: 35px;
+            font-size: 30px;
         }
     }
     

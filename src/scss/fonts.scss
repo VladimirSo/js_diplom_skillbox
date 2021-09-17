@@ -1,31 +1,11 @@
 @font-face {
-	font-family: "Caveat";
-	src: local("Caveat"), local("Caveat-Regular");
-	src: url("../fonts/Caveat-Regular.woff2") format("woff2");
-	src: url("../fonts/Caveat-Regular.woff") format("woff");
-	font-weight: normal;
-	font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-	font-family: "Caveat";
-	src: local("Caveat Medium"), local("Caveat-Medium");
-	src: url("../fonts/Caveat-Medium.woff2") format("woff2");
-	src: url("../fonts/Caveat-Medium.woff") format("woff");
-	font-weight: 500;
-	font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-	font-family: "Caveat";
-	src: local("Caveat Bold"), local("Caveat-Bold");
-	src: url("../fonts/Caveat-Bold.woff2") format("woff2");
-	src: url("../fonts/Caveat-Bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-    font-display: swap;
+    font-family: "Marutya";
+    src: local("Marutya");
+    src: url("../fonts/Marutya.woff2") format("woff2");
+    src: url("../fonts/Marutya.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+	font-display: swap;
 }
 
 @font-face {

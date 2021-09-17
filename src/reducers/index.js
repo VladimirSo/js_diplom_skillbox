@@ -63,7 +63,7 @@ const fotos = (
                         likedByUser: photo.liked_by_user,
                         url: photo.urls.full,
                     };
-                    localStorage.setItem('fotoViewerViewedPhoto', JSON.stringify(selectedPhoto));
+                    sessionStorage.setItem('fotoViewerViewedPhoto', JSON.stringify(selectedPhoto));
                 }
             });
 
@@ -71,8 +71,19 @@ const fotos = (
                 viewedPhoto: selectedPhoto,
             });
         case 'GET_PHOTO_INFO':
+            // debugger;
             console.log('PHOTO_INFO_SUCCESS: ', action.payload);
-            return state
+            let likedPhoto = state.viewedPhoto;
+
+            if (action.payload.liked_by_user === true) {
+                likedPhoto.likedByUser = true;
+            }
+
+            return Object.assign({}, state, {
+                viewedPhoto: likedPhoto,
+            });
+        // 
+        // return state
         case 'GET_PHOTO_INFO_ERROR':
             console.log('PHOTO_INFO_ERROR: ', action.er);
             return state;
@@ -115,16 +126,16 @@ const fotos = (
             // debugger;
             console.log('TOGGLE_LIKE_FAIL: ', action.error);
             return state;
-        case 'GET_LIKED_FOTOS_MAKE':
-            console.log('GET_LIKED_FOTOS_MAKE');
-            return state;
-        case 'GET_LIKED_FOTOS_SUCCESS':
-            // debugger;
-            console.log('GET_LIKED_FOTOS_SUCCESS: ', action.payload);
-            return state;
-        case 'GET_LIKED_FOTOS_FAILURE':
-            console.log('GET_LIKED_FOTOS_FAILURE: ', action.error);
-            return state;
+        // case 'GET_LIKED_FOTOS_MAKE':
+        //     console.log('GET_LIKED_FOTOS_MAKE');
+        //     return state;
+        // case 'GET_LIKED_FOTOS_SUCCESS':
+        //     // debugger;
+        //     console.log('GET_LIKED_FOTOS_SUCCESS: ', action.payload);
+        //     return state;
+        // case 'GET_LIKED_FOTOS_FAILURE':
+        //     console.log('GET_LIKED_FOTOS_FAILURE: ', action.error);
+        //     return state;
         default:
             return state;
     }

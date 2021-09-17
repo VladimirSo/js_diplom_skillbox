@@ -7,8 +7,10 @@ import '../scss/list-fotos.scss';
 
 const FotosList = (props) => {
     // debugger;
-    const { rootReducer, viewPhoto, loadFotos, } = props;
+    const { rootReducer, viewPhoto, loadFotos, getLikesInfo } = props;
     const fotosArr = rootReducer.fotos.fotosArr;
+
+    const authToken = rootReducer.fotos.authToken;
 
     return (
         <div className="fotos-list">
@@ -29,8 +31,12 @@ const FotosList = (props) => {
                                     src={foto.urls.small}
                                     width={'100%'}
                                     effect={'opacity'}
-                                    onClick={ev => {
+                                    // onClick={() => {
+                                    //     viewPhoto(foto.id);
+                                    // }}
+                                    onClick={() => {
                                         viewPhoto(foto.id);
+                                        getLikesInfo(foto.id, authToken);
                                     }}
                                 />
                             </Link>

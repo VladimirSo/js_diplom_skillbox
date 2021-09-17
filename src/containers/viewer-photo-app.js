@@ -5,7 +5,6 @@ import ViewerPhoto from '../components/view-photo.js';
 import { toggleLike, getLikesInfo, } from '../actions/actions.js';
 
 let ViewerPhotoApp = (props) => {
-    // debugger;
     const {
         rootReducer, toggleLike, getLikesInfo
     } = props;

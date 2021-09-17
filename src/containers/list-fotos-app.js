@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import FotosList from '../components/list-fotos.js';
-import { viewPhoto, } from '../actions/actions.js';
+import { viewPhoto, getLikesInfo } from '../actions/actions.js';
 import { loadFotos, requestAuthToken } from '../actions/actions.js';
 
 let App = (props) => {
     // debugger;
     const {
-        rootReducer, loadFotos, requestAuthToken, viewPhoto
+        rootReducer, loadFotos, requestAuthToken, viewPhoto, getLikesInfo
     } = props;
 
     const fotosArr = rootReducer.fotos.fotosArr;
@@ -50,7 +50,7 @@ let App = (props) => {
 
     return (
         <div>
-            <FotosList rootReducer={rootReducer} viewPhoto={viewPhoto} loadFotos={loadFotos} requestAuthToken={requestAuthToken} />
+            <FotosList rootReducer={rootReducer} viewPhoto={viewPhoto} loadFotos={loadFotos} requestAuthToken={requestAuthToken} getLikesInfo={getLikesInfo} />
         </div>
     )
 }
@@ -65,7 +65,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         viewPhoto: (id) => dispatch(viewPhoto(id)),
         loadFotos: () => dispatch(loadFotos()),
-        getLikedFotos: () => dispatch(getLikedFotos()),
+        // getLikedFotos: () => dispatch(getLikedFotos()),
+        getLikesInfo: (id, code) => dispatch(getLikesInfo(id, code)),
         requestAuthToken: (code) => dispatch(requestAuthToken(code)),
     }
 }

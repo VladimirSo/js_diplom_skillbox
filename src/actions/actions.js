@@ -282,7 +282,7 @@ export const toggleLike = (id, liked, token) => {
         }
 
         return (dispatch) => {
-            // console.log('develope - test offshoot for non-liked photo');
+            // console.log('test offshoot for non-liked photo');
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -313,7 +313,7 @@ export const toggleLike = (id, liked, token) => {
             }
             return Promise.resolve(response)
         }
-        // console.log('develope - test offshoot for liked photo');
+        // console.log('test offshoot for liked photo');
         return (dispatch) => {
             fetch(url, {
                 method: 'DELETE',
@@ -353,56 +353,57 @@ const toggleLikeSuccess = (likedPhoto) => {
     }
 }
 
-//// ф-я получения id лайкнутых фото 
-export const getLikedFotos = () => {
-    return (dispatch) => {
-        debugger;
-        dispatch(getLikedFotosMake());
 
-        unsplash.users.getLikes({
-            username: MY_USERNAME,
-            perPage: 10,
-        }).then(result => {
-            if (result.error) {
-                dispatch(getLikedFotosFailure(result.errors[0]));
-            } else {
-                const feed = result.response;
-                const results = feed.results;
-                // console.log(feed);
-                // console.log(results);
-                let likedFotosArr = [];
+// //// ф-я получения id лайкнутых фото 
+// export const getLikedFotos = () => {
+//     return (dispatch) => {
+//         debugger;
+//         dispatch(getLikedFotosMake());
 
-                for (let prop in results) {
-                    if (results.hasOwnProperty(prop)) {
-                        likedFotosArr = [
-                            ...likedFotosArr,
-                            {
-                                id: results[prop].id,
-                            }
-                        ];
-                    }
-                }
-                // console.log('LIKED PHOTOS ID`S ARROW: ', likedFotosArr);
-                dispatch(getLikedFotosSuccess(likedFotosArr));
-            }
-        });
-    }
-}
+//         unsplash.users.getLikes({
+//             username: MY_USERNAME,
+//             perPage: 10,
+//         }).then(result => {
+//             if (result.error) {
+//                 dispatch(getLikedFotosFailure(result.errors[0]));
+//             } else {
+//                 const feed = result.response;
+//                 const results = feed.results;
+//                 // console.log(feed);
+//                 // console.log(results);
+//                 let likedFotosArr = [];
 
-const getLikedFotosMake = () => {
-    return {
-        type: 'GET_LIKED_FOTOS_MAKE',
-    }
-}
-const getLikedFotosFailure = (error) => {
-    return {
-        type: 'GET_LIKED_FOTOS_FAILURE',
-        error: 'Get Liked Error: ' + error,
-    }
-}
-const getLikedFotosSuccess = (payload) => {
-    return {
-        type: 'GET_LIKED_FOTOS_SUCCESS',
-        payload,
-    }
-}
+//                 for (let prop in results) {
+//                     if (results.hasOwnProperty(prop)) {
+//                         likedFotosArr = [
+//                             ...likedFotosArr,
+//                             {
+//                                 id: results[prop].id,
+//                             }
+//                         ];
+//                     }
+//                 }
+//                 // console.log('LIKED PHOTOS ID`S ARROW: ', likedFotosArr);
+//                 dispatch(getLikedFotosSuccess(likedFotosArr));
+//             }
+//         });
+//     }
+// }
+
+// const getLikedFotosMake = () => {
+//     return {
+//         type: 'GET_LIKED_FOTOS_MAKE',
+//     }
+// }
+// const getLikedFotosFailure = (error) => {
+//     return {
+//         type: 'GET_LIKED_FOTOS_FAILURE',
+//         error: 'Get Liked Error: ' + error,
+//     }
+// }
+// const getLikedFotosSuccess = (payload) => {
+//     return {
+//         type: 'GET_LIKED_FOTOS_SUCCESS',
+//         payload,
+//     }
+// }
