@@ -22,7 +22,6 @@ main {
     border-bottom: 1px solid #DDD;
     border-radius: 5px 5px 0 0;
     padding: 15px;
-
     @media (min-width: 768px) {
         padding: 25px;
     }
@@ -38,7 +37,6 @@ main {
 }
 
 .lenta-title {
-    // font-family: "Caveat", "Arial", sans-serif;
     font-family: "Marutya", "Arial", sans-serif;
     font-size: 40px;
     line-height: 40px;
@@ -68,6 +66,5 @@ main {
         @media (min-width: 768px) {
             font-size: 30px;
         }
-    }
-    
+    }   
 }

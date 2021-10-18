@@ -65,7 +65,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         viewPhoto: (id) => dispatch(viewPhoto(id)),
         loadFotos: () => dispatch(loadFotos()),
-        // getLikedFotos: () => dispatch(getLikedFotos()),
         getLikesInfo: (id, code) => dispatch(getLikesInfo(id, code)),
         requestAuthToken: (code) => dispatch(requestAuthToken(code)),
     }

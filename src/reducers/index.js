@@ -62,6 +62,8 @@ const fotos = (
                         likes: photo.likes,
                         likedByUser: photo.liked_by_user,
                         url: photo.urls.full,
+                        width: photo.width,
+                        height: photo.height,
                     };
                     sessionStorage.setItem('fotoViewerViewedPhoto', JSON.stringify(selectedPhoto));
                 }
