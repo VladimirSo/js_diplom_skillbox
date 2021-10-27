@@ -6,7 +6,7 @@ import '../scss/auth.scss';
 let AuthenApp = (props) => {
     console.log('REQUEST SENT TO');
 
-    if (localStorage.fotoViewerAuthToken === undefined) {
+    if (sessionStorage.fotoViewerAuthToken === undefined) {
         // debugger;
         requestAuth();
     };

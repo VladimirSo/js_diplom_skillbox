@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import FotosList from '../components/list-fotos.js';
@@ -11,9 +11,9 @@ let App = (props) => {
         rootReducer, loadFotos, requestAuthToken, viewPhoto, getLikesInfo
     } = props;
 
-    const fotosArr = rootReducer.fotos.fotosArr;
+    // const fotosArr = rootReducer.fotos.fotosArr;
 
-    window.onload = () => {
+    useEffect(() => {
         // debugger;
         if (sessionStorage.fotoViewerSentRequest === 'true') {
             const authorizationCode = location.search.split('code=')[1];
@@ -23,14 +23,9 @@ let App = (props) => {
             requestAuthToken(authorizationCode);
         };
 
-        if (fotosArr.length === 0) {
-            loadFotos();
-        };
-    }
-
-    window.onbeforeunload = () => {
-        localStorage.removeItem('fotoViewerAuthToken')
-    }
+        console.log("First Load of Fotos");
+        loadFotos();
+    }, [])
 
     /// отслеживание скролла
     const catchScroll = () => {

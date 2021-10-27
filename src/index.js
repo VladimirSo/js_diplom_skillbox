@@ -28,7 +28,7 @@ const initialState = {
         didInvalidate: false,
         fotosArr: [],
         viewedPhoto: { id: "no_photo" },
-        authToken: (localStorage.fotoViewerAuthToken !== undefined) ? localStorage.fotoViewerAuthToken : '',
+        authToken: (sessionStorage.fotoViewerAuthToken !== undefined) ? sessionStorage.fotoViewerAuthToken : '',
     },
     routing: routerReducer,
 }
@@ -103,8 +103,8 @@ const initialState = {
 //     document.querySelector('.fotos-viewer-app')
 // );
 
-/// если в localStorage нет токена с unsplash или если запрос на авторизацию еще не послан, то нужна авторизаця
-const auth = ((localStorage.fotoViewerAuthToken === undefined) && (sessionStorage.fotoViewerSentRequest != 'true')) ? true : false;
+/// если в sessionStorage нет токена с unsplash или если запрос на авторизацию еще не послан, то нужна авторизаця
+const auth = ((sessionStorage.fotoViewerAuthToken === undefined) && (sessionStorage.fotoViewerSentRequest != 'true')) ? true : false;
 ///
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer, initialState);

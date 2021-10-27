@@ -3,8 +3,8 @@ import { createApi } from 'unsplash-js';
 const MY_USERNAME = 'sovlal';
 const MY_ACCESS_KEY = 'GfrfHdu7zljXSCIAGzglYINpnQJ7tMSgWG2xnY_DYKk';
 const MY_SECRET_KEY = 'BquYyRR03J60gsdrCm-aTBhNsctbSaTURNhKa4ZhOFY';
-const MY_REDIRECT_URI = 'http://151.248.112.239/';
-// const MY_REDIRECT_URI = 'http://127.0.0.1:8080';
+// const MY_REDIRECT_URI = 'http://151.248.112.239/';
+const MY_REDIRECT_URI = 'http://127.0.0.1:8080';
 const MY_SCOPE = 'write_likes+public';
 
 const unsplashTokenUrl = 'https://unsplash.com/oauth/token';
@@ -229,7 +229,7 @@ export const requestAuthToken = (code) => {
                 // console.log('DATA', data);
                 const payload = data.access_token;
                 // console.log('TOKEN: ', payload);
-                localStorage.setItem('fotoViewerAuthToken', payload);
+                sessionStorage.setItem('fotoViewerAuthToken', payload);
                 // requestAuthTokenSuccess(payload);
                 dispatch(requestAuthTokenSuccess(payload));
             })
