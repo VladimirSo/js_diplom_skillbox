@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { forwardRef, useRef, useImperativeHandle } from 'react';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 import '../scss/list-fotos.scss';
 
-const FotosList = (props) => {
+// const FotosList = (props) => {
+const FotosList = forwardRef((props, ref) => {
     // debugger;
     const { rootReducer, viewPhoto, loadFotos, getLikesInfo } = props;
     const fotosArr = rootReducer.fotos.fotosArr;
 
     const authToken = rootReducer.fotos.authToken;
+
+    const loadBtnRef = useRef();
+    useImperativeHandle(ref, () => ({
+        target: loadBtnRef.current,
+    }));
 
     return (
         <div className="fotos-list">
@@ -31,9 +37,6 @@ const FotosList = (props) => {
                                     src={foto.urls.small}
                                     width={'100%'}
                                     effect={'opacity'}
-                                    // onClick={() => {
-                                    //     viewPhoto(foto.id);
-                                    // }}
                                     onClick={() => {
                                         viewPhoto(foto.id);
                                         getLikesInfo(foto.id, authToken);
@@ -70,13 +73,13 @@ const FotosList = (props) => {
             })}
             </ol>
 
-            <div className="fotos-list__btn checked-elem">
+            <div className="fotos-list__btn checked-elem" ref={loadBtnRef}>
                 <button className="load-fotos-btn" onClick={() => {
                     loadFotos();
                 }}>Загрузить ещё фото...</button>
             </div>
         </div>
     )
-}
+});
 
 export default FotosList;

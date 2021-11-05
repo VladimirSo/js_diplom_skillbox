@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 
 import FotosList from '../components/list-fotos.js';
@@ -12,7 +12,6 @@ let App = (props) => {
     } = props;
 
     // const fotosArr = rootReducer.fotos.fotosArr;
-
     useEffect(() => {
         // debugger;
         if (sessionStorage.fotoViewerSentRequest === 'true') {
@@ -28,14 +27,20 @@ let App = (props) => {
     }, [])
 
     /// отслеживание скролла
+    const ref = useRef(null);
+    const checkedElemRef = ref.current;
+
     const catchScroll = () => {
         console.log('Catch end of scroll');
         loadFotos();
     }
     window.onscroll = () => {
-        const checkedElem = document.querySelector('.checked-elem');
-        const fetchFotos = rootReducer.fotos.isFetching;
         // debugger;
+        // const checkedElem = document.querySelector('.checked-elem');
+        // console.log(checkElRef.target);
+        const checkedElem = checkedElemRef.target;
+        const fetchFotos = rootReducer.fotos.isFetching;
+
         if (checkedElem) {
             if ((checkedElem.getBoundingClientRect().bottom - 1) < document.documentElement.clientHeight && (fetchFotos != true)) {
                 window.addEventListener('scroll', catchScroll, { once: true });
@@ -45,10 +50,10 @@ let App = (props) => {
 
     return (
         <div>
-            <FotosList rootReducer={rootReducer} viewPhoto={viewPhoto} loadFotos={loadFotos} requestAuthToken={requestAuthToken} getLikesInfo={getLikesInfo} />
+            <FotosList ref={ref} rootReducer={rootReducer} viewPhoto={viewPhoto} loadFotos={loadFotos} requestAuthToken={requestAuthToken} getLikesInfo={getLikesInfo} />
         </div>
     )
-}
+};
 
 const mapStateToProps = (state) => {
     return {
