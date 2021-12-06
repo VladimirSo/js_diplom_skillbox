@@ -13,9 +13,6 @@ const fotos = (
     },
 
     action) => {
-    // debugger;
-    // console.log(action);
-    // console.log(state);
 
     switch (action.type) {
         case 'LOAD_FOTOS_REQUEST':
@@ -128,16 +125,7 @@ const fotos = (
             // debugger;
             console.log('TOGGLE_LIKE_FAIL: ', action.error);
             return state;
-        // case 'GET_LIKED_FOTOS_MAKE':
-        //     console.log('GET_LIKED_FOTOS_MAKE');
-        //     return state;
-        // case 'GET_LIKED_FOTOS_SUCCESS':
-        //     // debugger;
-        //     console.log('GET_LIKED_FOTOS_SUCCESS: ', action.payload);
-        //     return state;
-        // case 'GET_LIKED_FOTOS_FAILURE':
-        //     console.log('GET_LIKED_FOTOS_FAILURE: ', action.error);
-        //     return state;
+
         default:
             return state;
     }

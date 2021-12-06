@@ -3,8 +3,8 @@ import { createApi } from 'unsplash-js';
 const MY_USERNAME = 'sovlal';
 const MY_ACCESS_KEY = 'GfrfHdu7zljXSCIAGzglYINpnQJ7tMSgWG2xnY_DYKk';
 const MY_SECRET_KEY = 'BquYyRR03J60gsdrCm-aTBhNsctbSaTURNhKa4ZhOFY';
-// const MY_REDIRECT_URI = 'http://151.248.112.239/';
-const MY_REDIRECT_URI = 'http://127.0.0.1:8080';
+const MY_REDIRECT_URI = 'http://151.248.112.239/';
+// const MY_REDIRECT_URI = 'http://127.0.0.1:8080';
 const MY_SCOPE = 'write_likes+public';
 
 const unsplashTokenUrl = 'https://unsplash.com/oauth/token';
@@ -117,7 +117,7 @@ export const loadFotos = () => {
                 console.log(`received ${results.length} photos out of ${total}`);
                 // console.log(results);
                 let fotosArr = [];
-
+                // перебираем результат запроса и вытаскиваем из него нужные свойства
                 for (let prop in results) {
                     if (results.hasOwnProperty(prop)) {
                         fotosArr = [
@@ -259,7 +259,7 @@ const requestAuthTokenSuccess = (payload) => {
     }
 }
 
-//// ф-я установки/снятия лайка
+//// ф-я переключения (установки/снятия) лайка на фото
 export const toggleLike = (id, liked, token) => {
     // debugger;
     const url = 'https://api.unsplash.com/photos/' + id + '/like';
@@ -274,7 +274,9 @@ export const toggleLike = (id, liked, token) => {
         // console.log(response.headers.get('content-type'));
         return response.json()
     }
-
+    // если у фото нет лайка, то ставим его, если уже есть - снимаем
+    // запрос на установку - через метод POST, код успеха 201
+    // запрос на снятие - через метод DELETE, код успеха 200
     if (!liked) {
         const status = response => {
             if (response.status !== 201) {
@@ -354,58 +356,3 @@ const toggleLikeSuccess = (likedPhoto) => {
         likedPhoto
     }
 }
-
-
-// //// ф-я получения id лайкнутых фото 
-// export const getLikedFotos = () => {
-//     return (dispatch) => {
-//         debugger;
-//         dispatch(getLikedFotosMake());
-
-//         unsplash.users.getLikes({
-//             username: MY_USERNAME,
-//             perPage: 10,
-//         }).then(result => {
-//             if (result.error) {
-//                 dispatch(getLikedFotosFailure(result.errors[0]));
-//             } else {
-//                 const feed = result.response;
-//                 const results = feed.results;
-//                 // console.log(feed);
-//                 // console.log(results);
-//                 let likedFotosArr = [];
-
-//                 for (let prop in results) {
-//                     if (results.hasOwnProperty(prop)) {
-//                         likedFotosArr = [
-//                             ...likedFotosArr,
-//                             {
-//                                 id: results[prop].id,
-//                             }
-//                         ];
-//                     }
-//                 }
-//                 // console.log('LIKED PHOTOS ID`S ARROW: ', likedFotosArr);
-//                 dispatch(getLikedFotosSuccess(likedFotosArr));
-//             }
-//         });
-//     }
-// }
-
-// const getLikedFotosMake = () => {
-//     return {
-//         type: 'GET_LIKED_FOTOS_MAKE',
-//     }
-// }
-// const getLikedFotosFailure = (error) => {
-//     return {
-//         type: 'GET_LIKED_FOTOS_FAILURE',
-//         error: 'Get Liked Error: ' + error,
-//     }
-// }
-// const getLikedFotosSuccess = (payload) => {
-//     return {
-//         type: 'GET_LIKED_FOTOS_SUCCESS',
-//         payload,
-//     }
-// }

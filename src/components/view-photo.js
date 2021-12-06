@@ -29,7 +29,7 @@ const ViewerPhoto = (props) => {
             hideElem.style.display = 'none';
             (targetRef.current).style.borderTopLeftRadius = '5px';
             (targetRef.current).style.borderTopRightRadius = '5px';
-
+            // определяем допустимую высоту и ширину фото в зависимости от размеров экрана
             let allowHeight = 0;
             let allowWidth = 0;
             if (window.innerHeight > window.innerWidth) {
@@ -42,13 +42,8 @@ const ViewerPhoto = (props) => {
                 }
                 (targetRef.current).style.height = '100vh';
             } else if (window.innerHeight < window.innerWidth) {
-                // if (viewedPhoto.height < viewedPhoto.width) {
                 allowHeight = window.innerHeight - (extraHeight + (targetRef.current).offsetHeight);
                 allowWidth = 'auto';
-                // } else if (viewedPhoto.height >= viewedPhoto.width) {
-                //     allowHeight = window.innerHeight - (extraHeight1 + (targetRef.current).offsetHeight);
-                //     allowWidth = 'auto';
-                // }
             }
             setDimensions({
                 height: allowHeight,

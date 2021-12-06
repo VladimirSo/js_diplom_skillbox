@@ -74,7 +74,6 @@ const conf = {
                 }
             },
             {
-                // test: /\.css$/i,
                 test: /\.(scss|css)$/i,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
@@ -100,15 +99,11 @@ const conf = {
         new CopyPlugin({
             patterns: [
                 {
-                    // from: path.resolve(__dirname, './src/images/**/*'),
-                    // to: path.resolve(__dirname, './dist')
                     from: '**/*',
                     context: path.resolve(__dirname, 'src', 'images'),
                     to: path.resolve(__dirname, './dist/images')
                 },
                 {
-                    // from: path.resolve(__dirname, './src/favicon/*'),
-                    // to: path.resolve(__dirname, './dist')
                     from: path.resolve(__dirname, 'src', 'favicon'),
                     to: path.resolve(__dirname, './dist/favicon')
                 },

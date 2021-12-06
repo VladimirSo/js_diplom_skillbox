@@ -11,7 +11,6 @@ let App = (props) => {
         rootReducer, loadFotos, requestAuthToken, viewPhoto, getLikesInfo
     } = props;
 
-    // const fotosArr = rootReducer.fotos.fotosArr;
     useEffect(() => {
         // debugger;
         if (sessionStorage.fotoViewerSentRequest === 'true') {
@@ -36,8 +35,6 @@ let App = (props) => {
     }
     window.onscroll = () => {
         // debugger;
-        // const checkedElem = document.querySelector('.checked-elem');
-        // console.log(checkElRef.target);
         const checkedElem = checkedElemRef.target;
         const fetchFotos = rootReducer.fotos.isFetching;
 

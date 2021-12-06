@@ -5,7 +5,6 @@ import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 import '../scss/list-fotos.scss';
 
-// const FotosList = (props) => {
 const FotosList = forwardRef((props, ref) => {
     // debugger;
     const { rootReducer, viewPhoto, loadFotos, getLikesInfo } = props;
